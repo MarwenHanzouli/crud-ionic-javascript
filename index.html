@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <title>Gérer des personnes</title>
+    <script src="./functions.js"></script>
+</head>
+<body>
+    
+
+<!-- Input with placeholder -->
+<div>
+    <form>
+        <ion-item>
+            <ion-label  position="floating">Nom</ion-label>
+            <ion-input id="nom"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Prenom</ion-label>
+            <ion-input id="prenom"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" id="email"></ion-input>
+        </ion-item>
+        <ion-button onclick="create()" color="primary">Ajouter</ion-button>
+        <ion-button type="reset" color="danger">Réinitialiser</ion-button>
+    </form>
+</div>
+<div>
+    <ion-list id="list">
+        <ion-item>
+          <ion-label>Nom</ion-label>
+          <ion-label>Prenom</ion-label>
+          <ion-label>Email</ion-label>
+          <ion-label>Opérations</ion-label>
+          </ion-item>
+     
+      </ion-list>
+</div>
+</body>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script type="module">
+        import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+        window.alertController = alertController;
+        import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+        window.modalController = modalController;
+    </script>
+</html>
