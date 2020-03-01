@@ -38,7 +38,7 @@ function create()
    let editButton = document.createElement("ion-button"); 
    editButton.textContent="Modifier";
    editButton.addEventListener('click', function(){
-    presentModal(person);
+    presentModal(person.id);
    });
    node.appendChild(editButton);
 
@@ -90,11 +90,11 @@ function dismissModal() {
     currentModal.dismiss().then(() => { currentModal = null; });
   }
 }
-function presentModal(objet) {
+function presentModal(idPer) {
   // create the modal with the `modal-page` component
   const modalElement = document.createElement('ion-modal');
   modalElement.component = 'modal-page';
-  modalElement.componentProps = objet;
+  modalElement.componentProps = idPer;
   document.body.appendChild(modalElement);
   currentModal=modalElement;
   return modalElement.present();
@@ -102,10 +102,11 @@ function presentModal(objet) {
 customElements.define('modal-page', class extends HTMLElement {
   connectedCallback() {
     const modalElement = document.querySelector('ion-modal');
-    const nom=modalElement.componentProps.nom;
-    const prenom=modalElement.componentProps.prenom;
-    const email=modalElement.componentProps.email; 
-    const idPerson=modalElement.componentProps.id;
+    console.log(modalElement.componentProps);
+    const nom=list.find(o => o.id==modalElement.componentProps)['nom'];
+    const prenom=list.find(o => o.id==modalElement.componentProps)['prenom'];
+    const email=list.find(o => o.id==modalElement.componentProps)['email']; 
+    const idPerson=modalElement.componentProps;
     this.innerHTML = `
       <ion-header translucent>
         <ion-toolbar>
@@ -149,7 +150,7 @@ function modifier(idd)
     "email":emailMod
   }
   console.log(newPerson);
-  newList=list.map(function(ob){ 
+  let newList=list.map(function(ob){ 
     console.log(ob); 
     if (ob['id']===idd)
       {
@@ -166,6 +167,7 @@ function modifier(idd)
     return ob;
   }
   );
+  dismissModal();
   list=newList;
   console.log(list);
 }
